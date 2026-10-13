@@ -49,7 +49,7 @@ module tb_mult;
         // Hold rst_n low for the first 2 cycles[cite: 7]
         @(posedge clk);
         @(posedge clk);
-        #1 rst_n = 1'b1;
+        #4 rst_n = 1'b1;
 
         // Apply all 256 input combinations[cite: 7]
         for (i = 0; i < 16; i = i + 1) begin
@@ -64,7 +64,7 @@ module tb_mult;
                 @(posedge clk); // Edge 2: result captured into output register p[cite: 3]
                 
                 // Wait a tiny delay after the clock edge to read the stable output
-                #1; 
+                #4; 
                 
                 // Compare p with expected value a * b[cite: 7]
                 if (p !== (a * b)) begin
