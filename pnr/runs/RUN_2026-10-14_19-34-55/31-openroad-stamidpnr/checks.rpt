@@ -1,0 +1,117 @@
+
+===========================================================================
+report_checks -unconstrained
+===========================================================================
+======================= nom_typ_1p20V_25C Corner ===================================
+
+Startpoint: rst_n (input port clocked by clk)
+Endpoint: _121_ (recovery check against rising-edge clock clk)
+Path Group: asynchronous
+Path Type: max
+
+Fanout         Cap        Slew       Delay        Time   Description
+---------------------------------------------------------------------------------------------
+                                  0.000000    0.000000   clock clk (rise edge)
+                                  0.000000    0.000000   clock network delay (propagated)
+                                  2.000000    2.000000 ^ input external delay
+    16    0.113884    0.124752    0.096720    2.096720 ^ rst_n (in)
+                                                         rst_n (net)
+                      0.124876    0.000000    2.096720 ^ _121_/RESET_B (sg13g2_dfrbpq_1)
+                                              2.096720   data arrival time
+
+                                 10.000000   10.000000   clock clk (rise edge)
+                                  0.000000   10.000000   clock source latency
+    16    0.061550    0.075146    0.047249   10.047250 ^ clk (in)
+                                                         clk (net)
+                      0.075181    0.000000   10.047250 ^ _121_/CLK (sg13g2_dfrbpq_1)
+                                 -0.250000    9.797250   clock uncertainty
+                                  0.000000    9.797250   clock reconvergence pessimism
+                                 -0.144548    9.652701   library recovery time
+                                              9.652701   data required time
+---------------------------------------------------------------------------------------------
+                                              9.652701   data required time
+                                             -2.096720   data arrival time
+---------------------------------------------------------------------------------------------
+                                              7.555981   slack (MET)
+
+
+Startpoint: _126_ (rising edge-triggered flip-flop clocked by clk)
+Endpoint: p[6] (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+Fanout         Cap        Slew       Delay        Time   Description
+---------------------------------------------------------------------------------------------
+                                  0.000000    0.000000   clock clk (rise edge)
+                                  0.000000    0.000000   clock source latency
+    16    0.068708    0.082606    0.059942    0.059942 ^ clk (in)
+                                                         clk (net)
+                      0.082732    0.000000    0.059942 ^ _126_/CLK (sg13g2_dfrbpq_1)
+     1    0.006000    0.036339    0.211921    0.271863 ^ _126_/Q (sg13g2_dfrbpq_1)
+                                                         p[6] (net)
+                      0.036339    0.000000    0.271863 ^ p[6] (out)
+                                              0.271863   data arrival time
+
+                                 10.000000   10.000000   clock clk (rise edge)
+                                  0.000000   10.000000   clock network delay (propagated)
+                                 -0.250000    9.750000   clock uncertainty
+                                  0.000000    9.750000   clock reconvergence pessimism
+                                 -2.000000    7.750000   output external delay
+                                              7.750000   data required time
+---------------------------------------------------------------------------------------------
+                                              7.750000   data required time
+                                             -0.271863   data arrival time
+---------------------------------------------------------------------------------------------
+                                              7.478137   slack (MET)
+
+
+
+
+===========================================================================
+report_checks --slack_max -0.01
+============================================================================
+======================= nom_typ_1p20V_25C Corner ===================================
+
+No paths found.
+
+
+===========================================================================
+ report_check_types -max_slew -max_cap -max_fanout -violators
+============================================================================
+======================= nom_typ_1p20V_25C Corner ===================================
+
+max fanout
+
+Pin                                   Limit Fanout  Slack
+---------------------------------------------------------
+clk                                       8     16     -8 (VIOLATED)
+rst_n                                     8     16     -8 (VIOLATED)
+
+
+
+===========================================================================
+report_parasitic_annotation -report_unannotated
+============================================================================
+Found 0 unannotated drivers.
+Found 8 partially unannotated drivers.
+ _120_/Q
+ _121_/Q
+ _122_/Q
+ _123_/Q
+ _124_/Q
+ _125_/Q
+ _126_/Q
+ _127_/Q
+
+===========================================================================
+max slew violation count 0
+Writing metric design__max_slew_violation__count__corner:nom_typ_1p20V_25C: 0
+max fanout violation count 2
+Writing metric design__max_fanout_violation__count__corner:nom_typ_1p20V_25C: 2
+max cap violation count 0
+Writing metric design__max_cap_violation__count__corner:nom_typ_1p20V_25C: 0
+============================================================================
+
+===========================================================================
+check_setup -verbose -unconstrained_endpoints -multiple_clock -no_clock -no_input_delay -loops -generated_clocks
+===========================================================================
