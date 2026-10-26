@@ -31,13 +31,13 @@ module tb_mult;
         forever #5 clk = ~clk;
     end
 
-    // 2. Waveform dumping[cite: 7]
+    // 2. Waveform dumping
     initial begin
         $dumpfile("mult.vcd");
         $dumpvars(0, tb_mult);
     end
 
-    // 3. Main test sequence[cite: 7]
+    // 3. Main test sequence
     initial begin
         // Initialize inputs and counters
         a = 4'd0;
@@ -46,12 +46,12 @@ module tb_mult;
         errors = 0;
         vectors = 0;
 
-        // Hold rst_n low for the first 2 cycles[cite: 7]
+        // Hold rst_n low for the first 2 cycles
         @(posedge clk);
         @(posedge clk);
         #4 rst_n = 1'b1;
 
-        // Apply all 256 input combinations[cite: 7]
+        // Apply all 256 input combinations
         for (i = 0; i < 16; i = i + 1) begin
             for (j = 0; j < 16; j = j + 1) begin
                 // Apply inputs on the negative edge to ensure stable setup time
@@ -59,16 +59,17 @@ module tb_mult;
                 a = i[3:0];
                 b = j[3:0];
 
-                // Wait two rising clock edges after applying inputs before comparing[cite: 15]
-                @(posedge clk); // Edge 1: inputs captured into a_reg and b_reg[cite: 3]
-                @(posedge clk); // Edge 2: result captured into output register p[cite: 3]
+                // Wait two rising clock edges after applying inputs before comparing
+                @(posedge clk); // Edge 1: inputs captured into a_reg and b_reg
+                @(posedge clk); // Edge 2: result captured into output register p
                 
                 // Wait a tiny delay after the clock edge to read the stable output
                 #4; 
                 
-                // Compare p with expected value a * b[cite: 7]
+                // Compare p with expected value a * b
                 if (p !== (a * b)) begin
-                    $display("Mismatch: a=%d, b=%d, expected=%d, got=%d", a, b, a*b, p);
+                    // FIXED: Padded a and b to 8 bits so the display prints the correct math
+                    $display("Mismatch: a=%d, b=%d, expected=%d, got=%d", a, b, {4'b0, a}*{4'b0, b}, p);
                     errors = errors + 1;
                 end
                 
@@ -76,7 +77,7 @@ module tb_mult;
             end
         end
 
-        // Print exactly one summary line[cite: 7]
+        // Print exactly one summary line
         if (errors == 0) begin
             $display("PASS: %0d vectors checked, 0 errors", vectors);
         end else begin

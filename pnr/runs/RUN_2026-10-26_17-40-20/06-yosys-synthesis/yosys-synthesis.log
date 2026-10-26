@@ -1,0 +1,1033 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2026  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)
+Found gzip magic in file `/foss/pdks/ihp-sg13g2/libs.ref/sg13g2_stdcell/lib/sg13g2_stdcell_typ_1p20V_25C.lib.gz', decompressing using zlib.
+
+1. Executing Liberty frontend: /foss/pdks/ihp-sg13g2/libs.ref/sg13g2_stdcell/lib/sg13g2_stdcell_typ_1p20V_25C.lib.gz
+Imported 84 cell types from liberty file.
+Found gzip magic in file `/foss/pdks/ihp-sg13g2/libs.ref/sg13g2_io/lib/sg13g2_io_typ_1p2V_3p3V_25C.lib.gz', decompressing using zlib.
+
+2. Executing Liberty frontend: /foss/pdks/ihp-sg13g2/libs.ref/sg13g2_io/lib/sg13g2_io_typ_1p2V_3p3V_25C.lib.gz
+Imported 22 cell types from liberty file.
+[INFO] Using SDC file '/foss/designs/4bit_array_multiplier/pnr/runs/RUN_2026-10-26_17-40-20/06-yosys-synthesis/synthesis.abc.sdc' for ABC…
+
+3. Executing Verilog-2005 frontend: /foss/designs/4bit_array_multiplier/rtl/full_adder.v
+Parsing SystemVerilog input from `/foss/designs/4bit_array_multiplier/rtl/full_adder.v' to AST representation.
+Storing AST representation for module `$abstract\full_adder'.
+Successfully finished Verilog frontend.
+
+4. Executing Verilog-2005 frontend: /foss/designs/4bit_array_multiplier/rtl/mult_array.v
+Parsing SystemVerilog input from `/foss/designs/4bit_array_multiplier/rtl/mult_array.v' to AST representation.
+Storing AST representation for module `$abstract\mult_array'.
+Successfully finished Verilog frontend.
+
+5. Executing HIERARCHY pass (managing design hierarchy).
+
+6. Executing AST frontend in derive mode using pre-parsed AST for module `\mult_array'.
+Generating RTLIL representation for module `\mult_array'.
+
+6.1. Analyzing design hierarchy..
+Top module:  \mult_array
+
+6.2. Executing AST frontend in derive mode using pre-parsed AST for module `\full_adder'.
+Generating RTLIL representation for module `\full_adder'.
+
+6.3. Analyzing design hierarchy..
+Top module:  \mult_array
+Used module:     \full_adder
+
+6.4. Analyzing design hierarchy..
+Top module:  \mult_array
+Used module:     \full_adder
+Removing unused module `$abstract\mult_array'.
+Removing unused module `$abstract\full_adder'.
+Removed 2 unused modules.
+Renaming module mult_array to mult_array.
+
+7. Executing ATTRMAP pass (move or copy attributes).
+
+8. Executing TRIBUF pass.
+
+9. Executing HIERARCHY pass (managing design hierarchy).
+
+9.1. Analyzing design hierarchy..
+Top module:  \mult_array
+Used module:     \full_adder
+
+9.2. Analyzing design hierarchy..
+Top module:  \mult_array
+Used module:     \full_adder
+Removed 0 unused modules.
+
+10. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+11. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$/foss/designs/4bit_array_multiplier/rtl/mult_array.v:74$7 in module mult_array.
+Marked 1 switch rules as full_case in process $proc$/foss/designs/4bit_array_multiplier/rtl/mult_array.v:13$1 in module mult_array.
+Removed a total of 0 dead cases.
+
+12. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 3 redundant assignments.
+Promoted 0 assignments to connections.
+
+13. Executing PROC_INIT pass (extract init attributes).
+
+14. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst_n in `\mult_array.$proc$/foss/designs/4bit_array_multiplier/rtl/mult_array.v:74$7'.
+Found async reset \rst_n in `\mult_array.$proc$/foss/designs/4bit_array_multiplier/rtl/mult_array.v:13$1'.
+
+15. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+
+16. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\mult_array.$proc$/foss/designs/4bit_array_multiplier/rtl/mult_array.v:74$7'.
+     1/1: $0\p[7:0]
+Creating decoders for process `\mult_array.$proc$/foss/designs/4bit_array_multiplier/rtl/mult_array.v:13$1'.
+     1/2: $0\b_reg[3:0]
+     2/2: $0\a_reg[3:0]
+
+17. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+18. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\mult_array.\p' using process `\mult_array.$proc$/foss/designs/4bit_array_multiplier/rtl/mult_array.v:74$7'.
+  created $adff cell `$procdff$20' with positive edge clock and positive level reset.
+Creating register for signal `\mult_array.\a_reg' using process `\mult_array.$proc$/foss/designs/4bit_array_multiplier/rtl/mult_array.v:13$1'.
+  created $adff cell `$procdff$25' with positive edge clock and positive level reset.
+Creating register for signal `\mult_array.\b_reg' using process `\mult_array.$proc$/foss/designs/4bit_array_multiplier/rtl/mult_array.v:13$1'.
+  created $adff cell `$procdff$30' with positive edge clock and positive level reset.
+
+19. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+20. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `mult_array.$proc$/foss/designs/4bit_array_multiplier/rtl/mult_array.v:74$7'.
+Removing empty process `mult_array.$proc$/foss/designs/4bit_array_multiplier/rtl/mult_array.v:13$1'.
+Cleaned up 0 empty switches.
+
+21. Executing CHECK pass (checking for obvious problems).
+Checking module mult_array...
+Checking module full_adder...
+Found and reported 0 problems.
+
+22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mult_array.
+<suppressed ~6 debug messages>
+Optimizing module full_adder.
+
+23. Executing FLATTEN pass (flatten design).
+Deleting now unused module full_adder.
+<suppressed ~12 debug messages>
+
+24. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mult_array.
+<suppressed ~20 debug messages>
+
+25. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mult_array..
+Removed 5 unused cells and 59 unused wires.
+<suppressed ~6 debug messages>
+
+26. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mult_array.
+
+27. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mult_array'.
+Computing hashes of 83 cells of `\mult_array'.
+Finding duplicate cells in `\mult_array'.
+Removed a total of 0 cells.
+
+28. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mult_array..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+29. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mult_array.
+Performed a total of 0 changes.
+
+30. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mult_array'.
+Computing hashes of 83 cells of `\mult_array'.
+Finding duplicate cells in `\mult_array'.
+Removed a total of 0 cells.
+
+31. Executing OPT_DFF pass (perform DFF optimizations).
+
+32. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mult_array..
+
+33. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mult_array.
+
+34. Executing FSM pass (extract and optimize FSM).
+
+34.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+34.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+34.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+34.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mult_array..
+
+34.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+34.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+34.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+34.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+35. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mult_array.
+
+36. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mult_array'.
+Computing hashes of 83 cells of `\mult_array'.
+Finding duplicate cells in `\mult_array'.
+Removed a total of 0 cells.
+
+37. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mult_array..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+38. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mult_array.
+Performed a total of 0 changes.
+
+39. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mult_array'.
+Computing hashes of 83 cells of `\mult_array'.
+Finding duplicate cells in `\mult_array'.
+Removed a total of 0 cells.
+
+40. Executing OPT_DFF pass (perform DFF optimizations).
+
+41. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mult_array..
+
+42. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mult_array.
+
+43. Executing WREDUCE pass (reducing word size of cells).
+Removed top 1 bits (of 4) from wire mult_array.r0.
+
+44. Executing PEEPOPT pass (run peephole optimizers).
+
+45. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mult_array..
+Removed 0 unused cells and 1 unused wires.
+<suppressed ~1 debug messages>
+
+46. Executing BOOTH pass (map to Booth multipliers).
+Mapped 0 multipliers.
+
+47. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module mult_array:
+  created 0 $alu and 0 $macc cells.
+
+48. Executing ARITH_TREE pass.
+
+49. Executing SHARE pass (SAT-based resource sharing).
+
+50. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mult_array.
+
+51. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mult_array'.
+Computing hashes of 83 cells of `\mult_array'.
+Finding duplicate cells in `\mult_array'.
+Removed a total of 0 cells.
+
+52. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mult_array..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+53. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mult_array.
+Performed a total of 0 changes.
+
+54. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mult_array'.
+Computing hashes of 83 cells of `\mult_array'.
+Finding duplicate cells in `\mult_array'.
+Removed a total of 0 cells.
+
+55. Executing OPT_DFF pass (perform DFF optimizations).
+
+56. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mult_array..
+
+57. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mult_array.
+
+58. Executing MEMORY pass.
+
+58.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+58.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+58.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+58.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+58.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+58.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mult_array..
+
+58.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+58.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+58.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mult_array..
+
+58.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+59. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mult_array..
+
+60. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mult_array.
+
+61. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mult_array'.
+Computing hashes of 83 cells of `\mult_array'.
+Finding duplicate cells in `\mult_array'.
+Removed a total of 0 cells.
+
+62. Executing OPT_DFF pass (perform DFF optimizations).
+
+63. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mult_array..
+
+64. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+65. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mult_array.
+
+66. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mult_array'.
+Computing hashes of 83 cells of `\mult_array'.
+Finding duplicate cells in `\mult_array'.
+Removed a total of 0 cells.
+
+67. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mult_array..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+68. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mult_array.
+Performed a total of 0 changes.
+
+69. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mult_array'.
+Computing hashes of 83 cells of `\mult_array'.
+Finding duplicate cells in `\mult_array'.
+Removed a total of 0 cells.
+
+70. Executing OPT_SHARE pass.
+
+71. Executing OPT_DFF pass (perform DFF optimizations).
+
+72. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mult_array..
+
+73. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mult_array.
+
+74. Executing TECHMAP pass (map to technology primitives).
+
+74.1. Executing Verilog-2005 frontend: /foss/tools/yosys/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/foss/tools/yosys/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `$__div_mod_u'.
+Generating RTLIL representation for module `$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `$connect'.
+Generating RTLIL representation for module `$input_port'.
+Successfully finished Verilog frontend.
+
+74.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $adff.
+Using extmapper simplemap for cells of type $xor.
+Using extmapper simplemap for cells of type $or.
+No more expansions possible.
+<suppressed ~148 debug messages>
+
+75. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mult_array.
+
+76. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mult_array'.
+Computing hashes of 108 cells of `\mult_array'.
+Finding duplicate cells in `\mult_array'.
+Removed a total of 0 cells.
+
+77. Executing OPT_DFF pass (perform DFF optimizations).
+
+78. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mult_array..
+
+79. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mult_array.
+
+80. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mult_array'.
+Computing hashes of 108 cells of `\mult_array'.
+Finding duplicate cells in `\mult_array'.
+Removed a total of 0 cells.
+
+81. Executing OPT_DFF pass (perform DFF optimizations).
+
+82. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mult_array..
+
+83. Executing ABC pass (technology mapping using ABC).
+
+83.1. Extracting gate netlist of module `\mult_array' to `<abc-temp-dir>/input.blif'..
+
+83.1.1. Executed ABC.
+Extracted 80 gates and 88 wires to a netlist network with 8 inputs and 8 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: UC Berkeley, ABC 1.01 (compiled Sep 22 2026 15:09:22)
+ABC: abc 01> empty
+ABC: abc 01> source <abc-temp-dir>/abc.script
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &fraig -x 
+ABC: + &put 
+ABC: + scorr 
+ABC: Warning: The network is combinational (run "fraig" or "fraig_sweep").
+ABC: + dc2 
+ABC: + dretime 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &dch -f 
+ABC: + &nf 
+ABC: + &put 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+ABC: 
+ABC: YOSYS_ABC_DONE 
+
+83.1.2. Re-integrating ABC results.
+ABC RESULTS:               AND cells:       15
+ABC RESULTS:            ANDNOT cells:        3
+ABC RESULTS:               MUX cells:        2
+ABC RESULTS:              NAND cells:       19
+ABC RESULTS:               NOR cells:        2
+ABC RESULTS:                OR cells:        3
+ABC RESULTS:             ORNOT cells:        4
+ABC RESULTS:              XNOR cells:       12
+ABC RESULTS:               XOR cells:        3
+ABC RESULTS:        internal signals:       72
+ABC RESULTS:           input signals:        8
+ABC RESULTS:          output signals:        8
+Removing temp directory.
+Removing global temp directory.
+
+84. Executing OPT pass (performing simple optimizations).
+
+84.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mult_array.
+
+84.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mult_array'.
+Computing hashes of 91 cells of `\mult_array'.
+Finding duplicate cells in `\mult_array'.
+Removed a total of 0 cells.
+
+84.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+84.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mult_array..
+Removed 0 unused cells and 87 unused wires.
+<suppressed ~32 debug messages>
+
+84.5. Finished fast OPT passes.
+
+85. Executing HIERARCHY pass (managing design hierarchy).
+
+85.1. Analyzing design hierarchy..
+Top module:  \mult_array
+
+85.2. Analyzing design hierarchy..
+Top module:  \mult_array
+Removed 0 unused modules.
+
+86. Executing CHECK pass (checking for obvious problems).
+Checking module mult_array...
+Found and reported 0 problems.
+
+87. Printing statistics.
+
+=== mult_array ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      105 wires
+      161 wire bits
+       50 public wires
+      106 public wire bits
+        5 ports
+       18 port bits
+       91 cells
+        3   $_ANDNOT_
+       15   $_AND_
+       16   $_DFF_PN0_
+        2   $_MUX_
+       19   $_NAND_
+        2   $_NOR_
+        4   $_ORNOT_
+        3   $_OR_
+       12   $_XNOR_
+        3   $_XOR_
+       12   $scopeinfo
+
+88. Executing OPT pass (performing simple optimizations).
+
+88.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mult_array.
+
+88.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mult_array'.
+Computing hashes of 91 cells of `\mult_array'.
+Finding duplicate cells in `\mult_array'.
+Removed a total of 0 cells.
+
+88.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mult_array..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+88.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mult_array.
+Performed a total of 0 changes.
+
+88.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mult_array'.
+Computing hashes of 91 cells of `\mult_array'.
+Finding duplicate cells in `\mult_array'.
+Removed a total of 0 cells.
+
+88.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+88.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mult_array..
+
+88.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mult_array.
+
+88.9. Finished fast OPT passes. (There is nothing left to do.)
+
+89. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mult_array..
+Removed 12 unused cells and 35 unused wires.
+<suppressed ~47 debug messages>
+{
+   "creator": "Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)",
+   "invocation": "stat -json -liberty /foss/designs/4bit_array_multiplier/pnr/runs/RUN_2026-10-26_17-40-20/tmp/61808209f8b54900a1f518f4ffa5f23a.lib -liberty /foss/designs/4bit_array_multiplier/pnr/runs/RUN_2026-10-26_17-40-20/tmp/ac57b1156b9c476590d2aca0b6a8efac.lib ",
+   "modules": {
+      "\\mult_array": {
+         "num_wires":         70,
+         "num_wire_bits":     96,
+         "num_pub_wires":     15,
+         "num_pub_wire_bits": 41,
+         "num_ports":         5,
+         "num_port_bits":     18,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         79,
+         "num_submodules":       0,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 3,
+            "$_AND_": 15,
+            "$_DFF_PN0_": 16,
+            "$_MUX_": 2,
+            "$_NAND_": 19,
+            "$_NOR_": 2,
+            "$_ORNOT_": 4,
+            "$_OR_": 3,
+            "$_XNOR_": 12,
+            "$_XOR_": 3
+         }
+      }
+   },
+      "design": {
+         "num_wires":         70,
+         "num_wire_bits":     96,
+         "num_pub_wires":     15,
+         "num_pub_wire_bits": 41,
+         "num_ports":         5,
+         "num_port_bits":     18,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         79,
+         "num_submodules":       0,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 3,
+            "$_AND_": 15,
+            "$_DFF_PN0_": 16,
+            "$_MUX_": 2,
+            "$_NAND_": 19,
+            "$_NOR_": 2,
+            "$_ORNOT_": 4,
+            "$_OR_": 3,
+            "$_XNOR_": 12,
+            "$_XOR_": 3
+         }
+      }
+}
+
+90. Printing statistics.
+
+=== mult_array ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       70 wires
+       96 wire bits
+       15 public wires
+       41 public wire bits
+        5 ports
+       18 port bits
+       79 cells
+        3   $_ANDNOT_
+       15   $_AND_
+       16   $_DFF_PN0_
+        2   $_MUX_
+       19   $_NAND_
+        2   $_NOR_
+        4   $_ORNOT_
+        3   $_OR_
+       12   $_XNOR_
+        3   $_XOR_
+
+   Area for cell type $_ANDNOT_ is unknown!
+   Area for cell type $_AND_ is unknown!
+   Area for cell type $_DFF_PN0_ is unknown!
+   Area for cell type $_MUX_ is unknown!
+   Area for cell type $_NAND_ is unknown!
+   Area for cell type $_NOR_ is unknown!
+   Area for cell type $_ORNOT_ is unknown!
+   Area for cell type $_OR_ is unknown!
+   Area for cell type $_XNOR_ is unknown!
+   Area for cell type $_XOR_ is unknown!
+
+[INFO] Applying tri-state buffer mapping from '/foss/pdks/ihp-sg13g2/libs.tech/librelane/sg13g2_stdcell/tribuff_map.v'…
+
+91. Executing TECHMAP pass (map to technology primitives).
+
+91.1. Executing Verilog-2005 frontend: /foss/pdks/ihp-sg13g2/libs.tech/librelane/sg13g2_stdcell/tribuff_map.v
+Parsing Verilog input from `/foss/pdks/ihp-sg13g2/libs.tech/librelane/sg13g2_stdcell/tribuff_map.v' to AST representation.
+Generating RTLIL representation for module `$_TBUF_'.
+Successfully finished Verilog frontend.
+
+91.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~3 debug messages>
+
+92. Executing SIMPLEMAP pass (map simple cells to gate primitives).
+[INFO] Applying latch mapping from '/foss/pdks/ihp-sg13g2/libs.tech/librelane/sg13g2_stdcell/latch_map.v'…
+
+93. Executing TECHMAP pass (map to technology primitives).
+
+93.1. Executing Verilog-2005 frontend: /foss/pdks/ihp-sg13g2/libs.tech/librelane/sg13g2_stdcell/latch_map.v
+Parsing Verilog input from `/foss/pdks/ihp-sg13g2/libs.tech/librelane/sg13g2_stdcell/latch_map.v' to AST representation.
+Generating RTLIL representation for module `$_DLATCH_P_'.
+Generating RTLIL representation for module `$_DLATCH_PN0_'.
+Generating RTLIL representation for module `$_DLATCH_N_'.
+Generating RTLIL representation for module `$_DLATCH_NN0_'.
+Successfully finished Verilog frontend.
+
+93.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~6 debug messages>
+
+94. Executing SIMPLEMAP pass (map simple cells to gate primitives).
+
+95. Executing DFFLIBMAP pass (mapping DFF/DLATCH cells to sequential cells from liberty file).
+  cell sg13g2_dfrbpq_1 (noninv, pins=4, area=48.99) is a direct match for cell type $_DFF_PN0_.
+  cell sg13g2_dlhq_1 (noninv, pins=3, area=30.84) is a direct match for cell type $_DLATCH_P_.
+  cell sg13g2_dllrq_1 (noninv, pins=4, area=29.03) is a direct match for cell type $_DLATCH_NN0_.
+  cell sg13g2_dlhrq_1 (noninv, pins=4, area=27.22) is a direct match for cell type $_DLATCH_PN0_.
+  final dff/dlatch cell mappings:
+    unmapped dff/dlatch cell: $_DFF_N_
+    unmapped dff/dlatch cell: $_DFF_P_
+    unmapped dff/dlatch cell: $_DFF_NN0_
+    unmapped dff/dlatch cell: $_DFF_NN1_
+    unmapped dff/dlatch cell: $_DFF_NP0_
+    unmapped dff/dlatch cell: $_DFF_NP1_
+    \sg13g2_dfrbpq_1 _DFF_PN0_ (.CLK( C), .D( D), .Q( Q), .RESET_B( R));
+    unmapped dff/dlatch cell: $_DFF_PN1_
+    unmapped dff/dlatch cell: $_DFF_PP0_
+    unmapped dff/dlatch cell: $_DFF_PP1_
+    unmapped dff/dlatch cell: $_DFFE_NN_
+    unmapped dff/dlatch cell: $_DFFE_NP_
+    unmapped dff/dlatch cell: $_DFFE_PN_
+    unmapped dff/dlatch cell: $_DFFE_PP_
+    unmapped dff/dlatch cell: $_DFFSR_NNN_
+    unmapped dff/dlatch cell: $_DFFSR_NNP_
+    unmapped dff/dlatch cell: $_DFFSR_NPN_
+    unmapped dff/dlatch cell: $_DFFSR_NPP_
+    unmapped dff/dlatch cell: $_DFFSR_PNN_
+    unmapped dff/dlatch cell: $_DFFSR_PNP_
+    unmapped dff/dlatch cell: $_DFFSR_PPN_
+    unmapped dff/dlatch cell: $_DFFSR_PPP_
+    unmapped dff/dlatch cell: $_DLATCH_N_
+    \sg13g2_dlhq_1 _DLATCH_P_ (.D( D), .GATE( E), .Q( Q));
+    \sg13g2_dllrq_1 _DLATCH_NN0_ (.D( D), .GATE_N( E), .Q( Q), .RESET_B( R));
+    unmapped dff/dlatch cell: $_DLATCH_NN1_
+    unmapped dff/dlatch cell: $_DLATCH_NP0_
+    unmapped dff/dlatch cell: $_DLATCH_NP1_
+    \sg13g2_dlhrq_1 _DLATCH_PN0_ (.D( D), .GATE( E), .Q( Q), .RESET_B( R));
+    unmapped dff/dlatch cell: $_DLATCH_PN1_
+    unmapped dff/dlatch cell: $_DLATCH_PP0_
+    unmapped dff/dlatch cell: $_DLATCH_PP1_
+    unmapped dff/dlatch cell: $_DLATCHSR_NNN_
+    unmapped dff/dlatch cell: $_DLATCHSR_NNP_
+    unmapped dff/dlatch cell: $_DLATCHSR_NPN_
+    unmapped dff/dlatch cell: $_DLATCHSR_NPP_
+    unmapped dff/dlatch cell: $_DLATCHSR_PNN_
+    unmapped dff/dlatch cell: $_DLATCHSR_PNP_
+    unmapped dff/dlatch cell: $_DLATCHSR_PPN_
+    unmapped dff/dlatch cell: $_DLATCHSR_PPP_
+
+95.1. Executing DFFLEGALIZE pass (convert FFs and LATCHes to types supported by the target).
+<suppressed ~4 debug messages>
+Mapping DFF/DLATCH cells in module `\mult_array':
+  mapped 16 $_DFF_PN0_ cells to \sg13g2_dfrbpq_1 cells.
+{
+   "creator": "Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)",
+   "invocation": "stat -json -liberty /foss/designs/4bit_array_multiplier/pnr/runs/RUN_2026-10-26_17-40-20/tmp/61808209f8b54900a1f518f4ffa5f23a.lib -liberty /foss/designs/4bit_array_multiplier/pnr/runs/RUN_2026-10-26_17-40-20/tmp/ac57b1156b9c476590d2aca0b6a8efac.lib ",
+   "modules": {
+      "\\mult_array": {
+         "num_wires":         70,
+         "num_wire_bits":     96,
+         "num_pub_wires":     15,
+         "num_pub_wire_bits": 41,
+         "num_ports":         5,
+         "num_port_bits":     18,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         79,
+         "num_submodules":       0,
+         "area":              783.820800,
+         "sequential_area":    783.820800,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 3,
+            "$_AND_": 15,
+            "$_MUX_": 2,
+            "$_NAND_": 19,
+            "$_NOR_": 2,
+            "$_ORNOT_": 4,
+            "$_OR_": 3,
+            "$_XNOR_": 12,
+            "$_XOR_": 3,
+            "sg13g2_dfrbpq_1": 16
+         }
+      }
+   },
+      "design": {
+         "num_wires":         70,
+         "num_wire_bits":     96,
+         "num_pub_wires":     15,
+         "num_pub_wire_bits": 41,
+         "num_ports":         5,
+         "num_port_bits":     18,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         79,
+         "num_submodules":       0,
+         "area":              783.820800,
+         "sequential_area":    783.820800,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 3,
+            "$_AND_": 15,
+            "$_MUX_": 2,
+            "$_NAND_": 19,
+            "$_NOR_": 2,
+            "$_ORNOT_": 4,
+            "$_OR_": 3,
+            "$_XNOR_": 12,
+            "$_XOR_": 3,
+            "sg13g2_dfrbpq_1": 16
+         }
+      }
+}
+
+96. Printing statistics.
+
+=== mult_array ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+       70        - wires
+       96        - wire bits
+       15        - public wires
+       41        - public wire bits
+        5        - ports
+       18        - port bits
+       79  783.821 cells
+        3        -   $_ANDNOT_
+       15        -   $_AND_
+        2        -   $_MUX_
+       19        -   $_NAND_
+        2        -   $_NOR_
+        4        -   $_ORNOT_
+        3        -   $_OR_
+       12        -   $_XNOR_
+        3        -   $_XOR_
+       16  783.821   sg13g2_dfrbpq_1
+
+   Area for cell type $_ANDNOT_ is unknown!
+   Area for cell type $_AND_ is unknown!
+   Area for cell type $_MUX_ is unknown!
+   Area for cell type $_NAND_ is unknown!
+   Area for cell type $_NOR_ is unknown!
+   Area for cell type $_ORNOT_ is unknown!
+   Area for cell type $_OR_ is unknown!
+   Area for cell type $_XNOR_ is unknown!
+   Area for cell type $_XOR_ is unknown!
+
+   Chip area for module '\mult_array': 783.820800
+     of which used for sequential elements: 783.820800 (100.00%)
+
+[INFO] Using generated ABC strategy script '/foss/designs/4bit_array_multiplier/pnr/runs/RUN_2026-10-26_17-40-20/06-yosys-synthesis/AREA_0.abc'…
+
+97. Executing ABC pass (technology mapping using ABC).
+
+97.1. Extracting gate netlist of module `\mult_array' to `/tmp/yosys-abc-wqJ4XW/input.blif'..
+
+97.1.1. Executed ABC.
+Extracted 63 gates and 71 wires to a netlist network with 8 inputs and 8 outputs.
+Running ABC script: /tmp/yosys-abc-wqJ4XW/abc.script
+ABC: UC Berkeley, ABC 1.01 (compiled Sep 22 2026 15:09:22)
+ABC: abc 01> empty
+ABC: abc 01> source /tmp/yosys-abc-wqJ4XW/abc.script
+ABC: + read_blif /tmp/yosys-abc-wqJ4XW/input.blif 
+ABC: + read_scl /tmp/yosys-liberty-scl-cache-1000/yosys_merged_7aa6a8bc.scl 
+ABC: + read_constr -v /foss/designs/4bit_array_multiplier/pnr/runs/RUN_2026-10-26_17-40-20/06-yosys-synthesis/synthesis.abc.sdc 
+ABC: Setting driving cell to be "sg13g2_buf_4/X".
+ABC: Setting output load to be 6.000000.
+ABC: + source /foss/designs/4bit_array_multiplier/pnr/runs/RUN_2026-10-26_17-40-20/06-yosys-synthesis/AREA_0.abc 
+ABC: Error: The network is combinational.
+ABC: Cannot find the default PI driving cell (sg13g2_buf_4/X) in the library.
+ABC: WireLoad = "none"  Gates =     64 (  4.7 %)   Cap =  7.6 ff (  3.1 %)   Area =      620.49 ( 93.8 %)   Delay =  1223.12 ps  ( 34.4 %)               
+ABC: Path  0 --       8 : 0    6 pi              A =   0.00  Df =   0.0   -0.0 ps  S =   0.0 ps  Cin =  0.0 ff  Cout =  18.1 ff  Cmax =   0.0 ff  G =    0  
+ABC: Path  1 --      31 : 2    2 sg13g2_nand2_1  A =   7.26  Df =  57.6  -18.4 ps  S =  54.7 ps  Cin =  2.9 ff  Cout =   8.1 ff  Cmax = 300.0 ff  G =  275  
+ABC: Path  2 --      34 : 3    1 sg13g2_mux2_1   A =  18.14  Df = 258.8  -80.8 ps  S =  42.8 ps  Cin =  3.6 ff  Cout =   5.2 ff  Cmax = 300.0 ff  G =  143  
+ABC: Path  3 --      35 : 2    5 sg13g2_xor2_1   A =  14.52  Df = 393.4  -34.6 ps  S = 174.2 ps  Cin =  5.4 ff  Cout =  17.8 ff  Cmax = 300.0 ff  G =  319  
+ABC: Path  4 --      38 : 2    1 sg13g2_xnor2_1  A =  14.52  Df = 520.0  -15.9 ps  S =  96.8 ps  Cin =  5.4 ff  Cout =   5.1 ff  Cmax = 300.0 ff  G =   95  
+ABC: Path  5 --      39 : 2    2 sg13g2_xnor2_1  A =  14.52  Df = 642.0   -7.0 ps  S = 117.4 ps  Cin =  5.4 ff  Cout =   8.3 ff  Cmax = 300.0 ff  G =  151  
+ABC: Path  6 --      40 : 2    2 sg13g2_nand2b_1 A =   9.07  Df = 746.6  -40.0 ps  S =  74.2 ps  Cin =  2.6 ff  Cout =   9.3 ff  Cmax = 300.0 ff  G =  346  
+ABC: Path  7 --      70 : 3    2 sg13g2_o21ai_1  A =   9.07  Df = 885.8  -87.1 ps  S = 120.5 ps  Cin =  3.3 ff  Cout =   8.3 ff  Cmax = 300.0 ff  G =  247  
+ABC: Path  8 --      75 : 3    2 sg13g2_a21oi_1  A =   9.07  Df = 998.0  -81.3 ps  S =  98.5 ps  Cin =  3.0 ff  Cout =   8.3 ff  Cmax = 300.0 ff  G =  274  
+ABC: Path  9 --      77 : 2    1 sg13g2_xor2_1   A =  14.52  Df =1113.7  -66.3 ps  S =  71.9 ps  Cin =  5.4 ff  Cout =   5.1 ff  Cmax = 300.0 ff  G =   93  
+ABC: Path 10 --      78 : 2    1 sg13g2_xnor2_1  A =  14.52  Df =1223.1  -60.0 ps  S =  86.8 ps  Cin =  5.4 ff  Cout =   6.0 ff  Cmax = 300.0 ff  G =  112  
+ABC: Start-point = pi7 (\b_reg [1]).  End-point = po5 (\fa3_3.sum).
+ABC: netlist                       : i/o =    8/    8  lat =    0  nd =    64  edge =    154  area =620.49  delay =11.00  lev = 11
+ABC: + write_blif /tmp/yosys-abc-wqJ4XW/output.blif 
+ABC:                                                                                
+ABC: YOSYS_ABC_DONE 
+
+97.1.2. Re-integrating ABC results.
+ABC RESULTS:    sg13g2_a21oi_1 cells:        8
+ABC RESULTS:    sg13g2_a22oi_1 cells:        1
+ABC RESULTS:     sg13g2_and2_1 cells:        5
+ABC RESULTS:     sg13g2_and3_1 cells:        1
+ABC RESULTS:      sg13g2_inv_1 cells:        3
+ABC RESULTS:     sg13g2_mux2_1 cells:        2
+ABC RESULTS:    sg13g2_nand2_1 cells:       14
+ABC RESULTS:   sg13g2_nand2b_1 cells:        2
+ABC RESULTS:    sg13g2_nand4_1 cells:        1
+ABC RESULTS:     sg13g2_nor2_1 cells:        1
+ABC RESULTS:    sg13g2_nor2b_1 cells:        2
+ABC RESULTS:     sg13g2_nor3_1 cells:        6
+ABC RESULTS:    sg13g2_o21ai_1 cells:        7
+ABC RESULTS:      sg13g2_or2_1 cells:        1
+ABC RESULTS:      sg13g2_or3_1 cells:        1
+ABC RESULTS:    sg13g2_xnor2_1 cells:        4
+ABC RESULTS:     sg13g2_xor2_1 cells:        5
+ABC RESULTS:        internal signals:       55
+ABC RESULTS:           input signals:        8
+ABC RESULTS:          output signals:        8
+Removing temp directory.
+Removing global temp directory.
+
+98. Executing SETUNDEF pass (replace undef values with defined constants).
+
+99. Executing HILOMAP pass (mapping to constant drivers).
+
+100. Executing SPLITNETS pass (splitting up multi-bit signals).
+
+101. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mult_array..
+Removed 0 unused cells and 78 unused wires.
+<suppressed ~8 debug messages>
+
+102. Executing INSBUF pass (insert buffer cells for connected wires).
+
+103. Executing CHECK pass (checking for obvious problems).
+Checking module mult_array...
+Found and reported 0 problems.
+{
+   "creator": "Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)",
+   "invocation": "stat -json -liberty /foss/designs/4bit_array_multiplier/pnr/runs/RUN_2026-10-26_17-40-20/tmp/61808209f8b54900a1f518f4ffa5f23a.lib -liberty /foss/designs/4bit_array_multiplier/pnr/runs/RUN_2026-10-26_17-40-20/tmp/ac57b1156b9c476590d2aca0b6a8efac.lib ",
+   "modules": {
+      "\\mult_array": {
+         "num_wires":         77,
+         "num_wire_bits":     90,
+         "num_pub_wires":     21,
+         "num_pub_wire_bits": 34,
+         "num_ports":         5,
+         "num_port_bits":     18,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         80,
+         "num_submodules":       0,
+         "area":              1404.307800,
+         "sequential_area":    783.820800,
+         "num_cells_by_type": {
+            "sg13g2_a21oi_1": 8,
+            "sg13g2_a22oi_1": 1,
+            "sg13g2_and2_1": 5,
+            "sg13g2_and3_1": 1,
+            "sg13g2_dfrbpq_1": 16,
+            "sg13g2_inv_1": 3,
+            "sg13g2_mux2_1": 2,
+            "sg13g2_nand2_1": 14,
+            "sg13g2_nand2b_1": 2,
+            "sg13g2_nand4_1": 1,
+            "sg13g2_nor2_1": 1,
+            "sg13g2_nor2b_1": 2,
+            "sg13g2_nor3_1": 6,
+            "sg13g2_o21ai_1": 7,
+            "sg13g2_or2_1": 1,
+            "sg13g2_or3_1": 1,
+            "sg13g2_xnor2_1": 4,
+            "sg13g2_xor2_1": 5
+         }
+      }
+   },
+      "design": {
+         "num_wires":         77,
+         "num_wire_bits":     90,
+         "num_pub_wires":     21,
+         "num_pub_wire_bits": 34,
+         "num_ports":         5,
+         "num_port_bits":     18,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         80,
+         "num_submodules":       0,
+         "area":              1404.307800,
+         "sequential_area":    783.820800,
+         "num_cells_by_type": {
+            "sg13g2_a21oi_1": 8,
+            "sg13g2_a22oi_1": 1,
+            "sg13g2_and2_1": 5,
+            "sg13g2_and3_1": 1,
+            "sg13g2_dfrbpq_1": 16,
+            "sg13g2_inv_1": 3,
+            "sg13g2_mux2_1": 2,
+            "sg13g2_nand2_1": 14,
+            "sg13g2_nand2b_1": 2,
+            "sg13g2_nand4_1": 1,
+            "sg13g2_nor2_1": 1,
+            "sg13g2_nor2b_1": 2,
+            "sg13g2_nor3_1": 6,
+            "sg13g2_o21ai_1": 7,
+            "sg13g2_or2_1": 1,
+            "sg13g2_or3_1": 1,
+            "sg13g2_xnor2_1": 4,
+            "sg13g2_xor2_1": 5
+         }
+      }
+}
+
+104. Printing statistics.
+
+=== mult_array ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+       77        - wires
+       90        - wire bits
+       21        - public wires
+       34        - public wire bits
+        5        - ports
+       18        - port bits
+       80  1.4E+03 cells
+        8   72.576   sg13g2_a21oi_1
+        1   10.849   sg13g2_a22oi_1
+        5    45.36   sg13g2_and2_1
+        1   12.701   sg13g2_and3_1
+       16  783.821   sg13g2_dfrbpq_1
+        3    16.33   sg13g2_inv_1
+        2   36.288   sg13g2_mux2_1
+       14  101.606   sg13g2_nand2_1
+        2   18.144   sg13g2_nand2b_1
+        1   10.886   sg13g2_nand4_1
+        1    7.258   sg13g2_nor2_1
+        2   18.144   sg13g2_nor2b_1
+        6   54.432   sg13g2_nor3_1
+        7   63.504   sg13g2_o21ai_1
+        1    9.072   sg13g2_or2_1
+        1   12.701   sg13g2_or3_1
+        4   58.061   sg13g2_xnor2_1
+        5   72.576   sg13g2_xor2_1
+
+   Chip area for module '\mult_array': 1404.307800
+     of which used for sequential elements: 783.820800 (55.82%)
+
+105. Executing Verilog backend.
+Dumping module `\mult_array'.
+
+106. Executing JSON backend.
