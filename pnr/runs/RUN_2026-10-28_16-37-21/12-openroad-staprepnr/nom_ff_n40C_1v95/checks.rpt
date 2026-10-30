@@ -1,0 +1,172 @@
+
+===========================================================================
+report_checks -unconstrained
+===========================================================================
+======================= nom_ff_n40C_1v95 Corner ===================================
+
+Startpoint: rst_n (input port clocked by clk)
+Endpoint: _82_ (recovery check against rising-edge clock clk)
+Path Group: asynchronous
+Path Type: max
+
+Fanout         Cap        Slew       Delay        Time   Description
+---------------------------------------------------------------------------------------------
+                      0.150000    0.000000    0.000000   clock clk (rise edge)
+                                  0.000000    0.000000   clock network delay (ideal)
+                                  2.000000    2.000000 ^ input external delay
+    16    0.057936    0.199634    0.143421    2.143421 ^ rst_n (in)
+                                                         rst_n (net)
+                      0.199634    0.000000    2.143421 ^ _82_/RESET_B (sky130_fd_sc_hd__dfrtp_1)
+                                              2.143421   data arrival time
+
+                      0.150000   10.000000   10.000000   clock clk (rise edge)
+                                  0.000000   10.000000   clock network delay (ideal)
+                                 -0.250000    9.750000   clock uncertainty
+                                  0.000000    9.750000   clock reconvergence pessimism
+                                              9.750000 ^ _82_/CLK (sky130_fd_sc_hd__dfrtp_1)
+                                  0.130784    9.880784   library recovery time
+                                              9.880784   data required time
+---------------------------------------------------------------------------------------------
+                                              9.880784   data required time
+                                             -2.143421   data arrival time
+---------------------------------------------------------------------------------------------
+                                              7.737364   slack (MET)
+
+
+Startpoint: _82_ (rising edge-triggered flip-flop clocked by clk)
+Endpoint: p[0] (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+Fanout         Cap        Slew       Delay        Time   Description
+---------------------------------------------------------------------------------------------
+                      0.150000    0.000000    0.000000   clock clk (rise edge)
+                                  0.000000    0.000000   clock network delay (ideal)
+                      0.150000    0.000000    0.000000 ^ _82_/CLK (sky130_fd_sc_hd__dfrtp_1)
+     1    0.033442    0.224807    0.385527    0.385527 ^ _82_/Q (sky130_fd_sc_hd__dfrtp_1)
+                                                         p[0] (net)
+                      0.224807    0.000000    0.385527 ^ p[0] (out)
+                                              0.385527   data arrival time
+
+                      0.150000   10.000000   10.000000   clock clk (rise edge)
+                                  0.000000   10.000000   clock network delay (ideal)
+                                 -0.250000    9.750000   clock uncertainty
+                                  0.000000    9.750000   clock reconvergence pessimism
+                                 -2.000000    7.750000   output external delay
+                                              7.750000   data required time
+---------------------------------------------------------------------------------------------
+                                              7.750000   data required time
+                                             -0.385527   data arrival time
+---------------------------------------------------------------------------------------------
+                                              7.364473   slack (MET)
+
+
+
+
+===========================================================================
+report_checks --slack_max -0.01
+============================================================================
+======================= nom_ff_n40C_1v95 Corner ===================================
+
+No paths found.
+
+
+===========================================================================
+ report_check_types -max_slew -max_cap -max_fanout -violators
+============================================================================
+======================= nom_ff_n40C_1v95 Corner ===================================
+
+max fanout
+
+Pin                                   Limit Fanout  Slack
+---------------------------------------------------------
+rst_n                                    10     16     -6 (VIOLATED)
+
+
+
+===========================================================================
+report_parasitic_annotation -report_unannotated
+============================================================================
+Found 71 unannotated drivers.
+ a[0]
+ a[1]
+ a[2]
+ a[3]
+ b[0]
+ b[1]
+ b[2]
+ b[3]
+ clk
+ rst_n
+ _37_/Y
+ _38_/Y
+ _39_/X
+ _40_/Y
+ _41_/X
+ _42_/Y
+ _43_/X
+ _44_/Y
+ _45_/Y
+ _46_/Y
+ _47_/Y
+ _48_/Y
+ _49_/Y
+ _50_/Y
+ _51_/Y
+ _52_/X
+ _53_/Y
+ _54_/X
+ _55_/Y
+ _56_/Y
+ _57_/Y
+ _58_/Y
+ _59_/Y
+ _60_/Y
+ _61_/X
+ _62_/Y
+ _63_/X
+ _64_/Y
+ _65_/Y
+ _66_/X
+ _67_/Y
+ _68_/X
+ _69_/Y
+ _70_/Y
+ _71_/X
+ _72_/X
+ _73_/X
+ _74_/Y
+ _75_/Y
+ _76_/X
+ _77_/X
+ _78_/Y
+ _79_/X
+ _80_/Y
+ _81_/Y
+ _82_/Q
+ _83_/Q
+ _84_/Q
+ _85_/Q
+ _86_/Q
+ _87_/Q
+ _88_/Q
+ _89_/Q
+ _90_/Q
+ _91_/Q
+ _92_/Q
+ _93_/Q
+ _94_/Q
+ _95_/Q
+ _96_/Q
+ _97_/Q
+Found 0 partially unannotated drivers.
+
+===========================================================================
+max slew violation count 0
+max fanout violation count 1
+max cap violation count 0
+============================================================================
+
+===========================================================================
+check_setup -verbose -unconstrained_endpoints -multiple_clock -no_clock -no_input_delay -loops -generated_clocks
+===========================================================================
